@@ -1,0 +1,112 @@
+from time import sleep
+
+    
+class celular(object):
+    memoria = 0
+    def __init__(self, marca, memoria):
+        self.marca = marca
+        self.ligado = False # False não está ligado
+        self.desligado = False # False não está desligado
+        self.GB = memoria
+
+    def reiniciar(self):
+
+        print("Reiniciando.....")
+        sleep(4)
+        print("Desligado!")
+        sleep(2)
+        print("Ligando....")
+        sleep(4)
+        print("ligado!")
+        
+    def esgotarGB(self):
+
+        if self.ligado == False:
+            print("\nVoce não pode fazer isso com celular desligado!\n")
+        else:
+            if self.GB > celular.memoria:
+                while self.GB >= 0:
+             
+                    print("Limpando...  ",self.GB)
+                    self.GB -= 10
+                    if self.GB <= 0:
+                        print("Limpo!")
+                    
+            else:
+                print("\nVoce já está com a memoria vazia :( \n")
+            
+    def ligar(self):
+       
+            if self.ligado == False:
+                print("\nligado!\n")
+                self.ligado = True
+            else:
+                print("\nJá está ligado!\n")
+    
+    def desligar(self):
+
+        if self.desligado == False:
+            self.ligado = False
+            print("\nDesligado!\n")
+            self.desligado = True
+        else:
+            print("\nJá está desligado!\n")
+                
+
+    
+def função(escolha, C):
+    if escolha == 1:
+        C.ligar()
+    elif escolha == 2:
+        C.desligar()
+    elif escolha == 3:
+        C.esgotarGB()
+    elif escolha == 4:
+        C.reiniciar()
+    else:
+        print("Essa opção ainda não existe!")
+        
+
+def main():
+
+    marca = input("Digite a marca do celular: ").strip().capitalize()
+    memoria = entrada_memoria()
+        
+    C = celular(marca, memoria)
+    while True:
+
+        metados()
+        escolha = entrada()
+
+        função(escolha, C)
+
+    
+def metados():
+    print("""
+
+    Escolha uma opção:
+
+    [ 1 ] Ligar
+    [ 2 ] Deligar
+    [ 3 ] esgotar Memoria
+    [ 4 ] Reiniciar
+    """)
+
+def entrada():
+
+    while True:
+        try:
+            escolha = int(input("R: "))
+            return escolha
+        except:
+            print("Erro! Tente digitar número inteiro ex(1,2,3 e 4)!!").upper()
+
+def entrada_memoria():
+
+    while True:
+        try:
+            gb = float(input("GB: "))
+            return gb
+        except:
+            print("Erro! Tente digitar um número!").upper()
+main()
